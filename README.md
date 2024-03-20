@@ -6,19 +6,19 @@ This is a demo React full-stack web application that uses Azure Functions to pro
 
 To get started with local development, first install the dependencies:
     
-    ```bash
-    npm install -g @azure/static-web-apps-cli
+```bash
+npm install -g @azure/static-web-apps-cli
 
-    npm install
-    cd api
-    npm install
-    ```
+npm install
+cd api
+npm install
+```
 
 Now, from the root of the project, run the following command to start the application:
 
-    ```bash
-    swa start http://localhost:5173 --run "npm run dev" --api-location ./api
-    ```
+```bash
+swa start http://localhost:5173 --run "npm run dev" --api-location ./api
+```
 
 Access the application at [http://localhost:4280](http://localhost:4280).
 
