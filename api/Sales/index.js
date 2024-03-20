@@ -22,20 +22,20 @@ module.exports = async function (context, req) {
                 body: `Error retrieving sale from the database: ${error.message}`
             };
         }
+    } else if (req.method === "GET") { // Return all sales
+        try {
+            const { resources } = await container.items.readAll().fetchAll();
+            context.res = {
+                status: 200,
+                body: resources
+            };
+        } catch (error) {
+            context.res = {
+                status: 500,
+                body: `Error retrieving sales from the database: ${error.message}`
+            };
+        }
     // Uncomment mutations to have CRUD access, leaving READ access only for demo purposes
-    // } else if (req.method === "GET") { // Return all sales
-    //     try {
-    //         const { resources } = await container.items.readAll().fetchAll();
-    //         context.res = {
-    //             status: 200,
-    //             body: resources
-    //         };
-    //     } catch (error) {
-    //         context.res = {
-    //             status: 500,
-    //             body: `Error retrieving sales from the database: ${error.message}`
-    //         };
-    //     }
     // } else if (req.method === "POST") { // Create new sale
     //     try {
     //         const newSale = req.body;

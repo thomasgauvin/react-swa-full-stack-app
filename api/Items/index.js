@@ -24,21 +24,21 @@ module.exports = async function (context, req) {
                 body: `Error retrieving item from the database: ${error.message}`
             };
         }
+    } 
+    else if(req.method === "GET"){ //return all items
+        try {
+            const { resources } = await container.items.readAll().fetchAll();
+            context.res = {
+                status: 200,
+                body: resources
+            };
+        } catch (error) {
+            context.res = {
+                status: 500,
+                body: `Error retrieving items from the database: ${error.message}`
+            };
+        }
     // Uncomment mutations to have CRUD access, leaving READ access only for demo purposes
-    // } 
-    // else if(req.method === "GET"){ //return all items
-    //     try {
-    //         const { resources } = await container.items.readAll().fetchAll();
-    //         context.res = {
-    //             status: 200,
-    //             body: resources
-    //         };
-    //     } catch (error) {
-    //         context.res = {
-    //             status: 500,
-    //             body: `Error retrieving items from the database: ${error.message}`
-    //         };
-    //     }
     // } else if(req.method === "POST"){ //create new item in the database
     //     try {
     //         const newItem = req.body;
