@@ -24,4 +24,9 @@ Access the application at [http://localhost:4280](http://localhost:4280).
 
 ## Deployment
 
-To deploy to Azure Static Web Apps, create a Static Web Apps resource from the Azure Portal. Specify '/' as the app location, '/api' as the API location, and 'dist' as the output location.
+To deploy to Azure Static Web Apps, create a Static Web Apps resource from the Azure Portal. Specify '/' as the app location, 'api' as the API location, and 'dist' as the output location.
+
+Set the following environment variables in the Static Web Apps resource from the Azure Portal:
+
+"COSMOSDB_KEY": "<ENTER COSMOS DB KEY>",
+"COSMOSDB_ENDPOINT": "<ENTER COSMOS DB ENDPOINT>",
