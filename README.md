@@ -1,4 +1,4 @@
-# React full-stack web application on Azure Static Web Apps
+# React + Functions full-stack web application on Azure Static Web Apps
 
 This is a demo React full-stack web application that uses Azure Functions to provide a REST API. The application is deployed to a single Azure Static Web Apps resource, and makes use of Static Web Apps' Functions integration to host the Azure Functions API.
 
