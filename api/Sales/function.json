@@ -7,8 +7,11 @@
       "name": "req",
       "methods": [
         "get",
-        "post"
-      ]
+        "post",
+        "put",
+        "delete"
+      ],
+      "route": "Sales/{id?}"
     },
     {
       "type": "http",

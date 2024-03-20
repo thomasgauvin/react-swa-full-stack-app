@@ -26,5 +26,8 @@
     "postcss": "^8.4.37",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.6"
+  },
+  "engines": {
+    "node": "18.17.1"
   }
 }

@@ -10,7 +10,8 @@
         "post",
         "put",
         "delete"
-      ]
+      ],
+      "route": "Items/{id?}"
     },
     {
       "type": "http",

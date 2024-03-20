@@ -8,7 +8,24 @@ module.exports = async function (context, req) {
     const database = client.database("SWAStore");
     const container = database.container("Items");
 
-    if(req.method === "GET"){ //return all items
+    if(req.method === "GET" && req.params.id){ //return single item
+        try {
+            const itemId = req.params.id;
+            console.log(itemId);
+            const { resource } = await container.item(itemId, itemId).read();
+            context.res = {
+                status: 200,
+                body: resource
+            };
+        }
+        catch (error) {
+            context.res = {
+                status: 500,
+                body: `Error retrieving item from the database: ${error.message}`
+            };
+        }
+    }
+    else if(req.method === "GET"){ //return all items
         try {
             const { resources } = await container.items.readAll().fetchAll();
             context.res = {
@@ -37,9 +54,9 @@ module.exports = async function (context, req) {
         }
     } else if (req.method === "PUT") {
         try {
-            const itemId = req.query.id;
+            const itemId = req.params.id;
             const updatedItem = req.body;
-            const { resource: replacedItem } = await container.item(itemId).replace(updatedItem);
+            const { resource: replacedItem } = await container.item(itemId, itemId).replace(updatedItem);
             context.res = {
                 status: 200,
                 body: replacedItem
@@ -52,12 +69,13 @@ module.exports = async function (context, req) {
         }
     } else if (req.method === "DELETE") {
         try {
-            const itemId = req.query.id;
-            await container.item(itemId).delete();
+            const itemId = req.params.id;
+            await container.item(itemId, itemId).delete();
             context.res = {
                 status: 204
             };
         } catch (error) {
+            console.log(error);
             context.res = {
                 status: 500,
                 body: `Error deleting item from the database: ${error.message}`
